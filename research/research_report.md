@@ -125,7 +125,7 @@ $$
 Lexicographic optimization instead orders objectives strictly, using zero objective degradation tolerances:
 
 $$
-\operatorname{lexmin}\left(\sum_i s_i,\ \sum_i w_i v_i,\ \sum_i c_i x_i\right)
+\mathrm{lexmin}\left(\sum_i s_i,\ \sum_i w_i v_i,\ \sum_i c_i x_i\right)
 $$
 
 The epsilon-constraint method minimizes weighted shortage subject to an explicit budget, with secondary SLA minimization to avoid dominated ties.

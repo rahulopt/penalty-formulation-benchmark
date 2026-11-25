@@ -20,6 +20,18 @@ This study asks:
 
 The contribution is a reproducible, controlled computational case study, not a claim that the underlying optimization methods are novel.
 
+## Related literature
+
+Convexity and equality-constrained continuous optimization provide the mathematical foundation for the quadratic shortage and normalized penalty derivations (Boyd and Vandenberghe, 2004). The continuous analytical solutions in this report are subsequently checked against integer decisions; the continuous theory does not itself certify integer optimality.
+
+Bertsimas, Farias and Trichakis (2011) examine the efficiency cost associated with fair resource allocation. Our experiments similarly compare aggregate service, worst service and transportation cost, but do not compute their formal price-of-fairness measure. The observed trade-offs are specific to the inventory allocation instances.
+
+Vielma, Ahmed and Nemhauser (2010) provide a broader framework for mixed-integer piecewise-linear optimization. Our convex separable penalty is a simpler epigraph formulation; the experiments investigate how breakpoint placement changes allocation and computational performance, rather than proposing a new general piecewise-linear representation.
+
+Mavrotas (2009) develops an augmented epsilon-constraint procedure to avoid weakly efficient solutions and redundant iterations. Our controlled integer epsilon sweep uses a secondary lexicographic objective to avoid dominated ties. It is not a full implementation or performance comparison of AUGMECON.
+
+These references establish the methodological context. The contribution of this working paper is the controlled comparative experiment and analytical validation, not novelty of the individual methods.
+
 ## 2. Mathematical framework
 
 Let $i$ index regions, $d_i$ be integer demand, $x_i$ allocation, $v_i$ shortage, $c_i$ unit allocation cost, $C$ available inventory and $w_i$ positive priority. The basic soft-demand model is:
@@ -231,8 +243,15 @@ Synthetic data, three independent network instances per size, fixed three SKUs a
 
 ## 8. Reproducibility and evidence
 
-Run the experiment modules from the repository root with the documented configurations. Use export_results.py to publish allowlisted metrics and app.py for the interactive dashboard. A fresh public clone can display results only after the exported dataset is committed; publication has not been independently verified in this report.
+Run the experiment modules from the repository root with the documented configurations. Use export_results.py to publish allowlisted metrics and app.py for the interactive dashboard. The exported dataset is now published. Repository CSV checks confirmed 54 unique complete scalability combinations, 54 feasible incumbents, 46 solver SLA successes, consistent recorded relative gaps, 15 hybrid objective-oracle matches and 83 epsilon-oracle flags (including one infeasible case and 81 distinct optimal KPI pairs). Dashboard browser execution and remaining dataset checks have not yet been verified.
 
 Primary evidence: the experiment scripts and configuration files in this repository, user-reported solver outputs recorded in the individual research findings, especially [hybrid sensitivity](e06c_findings.md), [heterogeneous demand](s02_findings.md), [soft SLA sensitivity](e08_sensitivity_findings.md), [lexicographic optimization](e09_lexicographic_findings.md), [Pareto frontier](e10_pareto_findings.md) and [network benchmark](e11_scalability_findings.md).
 
-A formal external literature review and verified bibliography are pending. This working paper documents the empirical investigation; it does not establish novelty relative to published research.
+## 9. References
+
+1. Boyd, S., & Vandenberghe, L. (2004). *Convex Optimization*. Cambridge University Press. [Publisher](https://www.cambridge.org/highereducation/books/convex-optimization/17D2FAA54F641A2F62C7CCD01DFA97C4).
+2. Bertsimas, D., Farias, V. F., & Trichakis, N. (2011). The Price of Fairness. *Operations Research*, 59(1), 17–31. https://doi.org/10.1287/opre.1100.0865
+3. Vielma, J. P., Ahmed, S., & Nemhauser, G. L. (2010). Mixed-Integer Models for Nonseparable Piecewise-Linear Optimization: Unifying Framework and Extensions. *Operations Research*, 58(2), 303–315. https://doi.org/10.1287/opre.1090.0721
+4. Mavrotas, G. (2009). Effective implementation of the epsilon-constraint method in Multi-Objective Mathematical Programming problems. *Applied Mathematics and Computation*, 213(2), 455–465. https://doi.org/10.1016/j.amc.2009.03.037
+
+This targeted literature review is based on verified bibliographic records and available summaries; it is not an exhaustive systematic review or a claim of research novelty.

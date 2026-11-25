@@ -36,11 +36,20 @@ def run(config, output_dir, mode, floor):
         model.setParam("MIPGap", 0)
         model.setParam("MIPGapAbs", 0)
         model.optimize()
-        status = "OPTIMAL" if model.Status == GRB.OPTIMAL else "INFEASIBLE" if model.Status == GRB.INFEASIBLE else "OTHER"
+        initial_status = int(model.Status)
+        runtime = model.Runtime
+        if model.Status == GRB.INF_OR_UNBD:
+            model.setParam("DualReductions", 0)
+            model.reset()
+            model.optimize()
+            runtime += model.Runtime
+        status = {GRB.OPTIMAL: "OPTIMAL", GRB.INFEASIBLE: "INFEASIBLE",
+                  GRB.INF_OR_UNBD: "INF_OR_UNBD", GRB.UNBOUNDED: "UNBOUNDED",
+                  GRB.TIME_LIMIT: "TIME_LIMIT"}.get(model.Status, "OTHER")
         result = {"experiment":"E02_service_floor", "scenario":config["experiment"]["scenario_id"],
                   "mode":mode, "service_floor":float(floor), "required_inventory":sum(required.values()),
                   "available_inventory":capacity, "status":status, "status_code":int(model.Status),
-                  "runtime_seconds":model.Runtime, "node_count":model.NodeCount}
+                  "runtime_seconds":runtime, "initial_status_code":initial_status, "node_count":model.NodeCount}
         if model.SolCount:
             rows = [{"region":r["id"], "priority":r["priority"], "demand":r["demand"],
                      "allocation":round(x[r["id"]].X), "shortage":round(v[r["id"]].X)} for r in regions]

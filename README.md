@@ -6,7 +6,7 @@ A reproducible Operations Research case study investigating how violation penalt
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue) ![Gurobi](https://img.shields.io/badge/Gurobi-13.0.0-blue) ![License](https://img.shields.io/badge/License-MIT-green)
 
-[Research report](research/research_report.md) · [Published data](data/benchmark_results/) · [Dashboard source](app.py) · [Experimental methodology](research/methodology.md)
+[Download research PDF](research/Penalty_Formulation_Research_Report.pdf) · [Research report](research/research_report.md) · [Published data](data/benchmark_results/) · [Dashboard source](app.py) · [Experimental methodology](research/methodology.md)
 
 ## Business problem
 

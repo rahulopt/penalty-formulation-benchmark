@@ -6,10 +6,13 @@ import plotly.express as px
 import streamlit as st
 
 ROOT = Path(__file__).resolve().parent
-RESULTS = ROOT / "results"
+LOCAL_RESULTS = ROOT / "results"
+PUBLIC_RESULTS = ROOT / "data" / "benchmark_results"
+RESULTS = PUBLIC_RESULTS if (PUBLIC_RESULTS / "experiment_summary.csv").exists() else LOCAL_RESULTS
 st.set_page_config(page_title="Penalty Formulation Benchmark", layout="wide")
 st.title("How should we allocate scarce inventory?")
 st.caption("A comparative optimization study | Penalty formulation, fairness, business priorities and solver performance")
+st.caption("Data source: " + ("Published benchmark dataset" if RESULTS == PUBLIC_RESULTS else "Local solver results"))
 st.markdown("""
 When inventory is insufficient, an optimizer must decide **who receives stock and who bears the shortage**.
 A mathematically optimal allocation can still leave a customer region completely unserved.

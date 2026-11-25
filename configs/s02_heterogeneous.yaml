@@ -1,0 +1,27 @@
+experiment:
+  name: penalty_formulation_benchmark
+  scenario_id: S02
+  description: Heterogeneous regional demand with equal costs and priorities
+  random_seed: 42
+inventory:
+  available_units: 800
+regions:
+  - {id: North, demand: 400, allocation_cost: 10, priority: 1}
+  - {id: South, demand: 250, allocation_cost: 10, priority: 1}
+  - {id: East, demand: 150, allocation_cost: 10, priority: 1}
+  - {id: West, demand: 120, allocation_cost: 10, priority: 1}
+  - {id: Central, demand: 80, allocation_cost: 10, priority: 1}
+penalties:
+  linear: {coefficient: 50}
+  quadratic: {coefficient: 0.625}
+  piecewise:
+    breakpoints: [0, 20, 50, 400]
+    slopes: [20, 50, 100]
+  fixed: {coefficient: 10000}
+  maximum_violation: {coefficient: 50}
+solver:
+  time_limit: 60
+  mip_gap: 0.0001
+  threads: 1
+  seed: 42
+  output_flag: 1

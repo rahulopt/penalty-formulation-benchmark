@@ -24,18 +24,14 @@ The contribution is a reproducible, controlled computational case study, not a c
 
 Let $i$ index regions, $d_i$ be integer demand, $x_i$ allocation, $v_i$ shortage, $c_i$ unit allocation cost, $C$ available inventory and $w_i$ positive priority. The basic soft-demand model is:
 
-
-
-$
+$$
 \begin{aligned}
 \min_{x,v}\quad &\sum_i c_i x_i+P(v)\\
 \text{subject to}\quad &x_i+v_i=d_i &&\forall i\\
 &\sum_i x_i\le C\\
 &x_i,v_i\in\mathbb Z_{\ge 0} &&\forall i
 \end{aligned}
-$
-
-
+$$
 
 For distribution-only comparisons, allocation is either explicitly fixed to min(C, total demand) or verified to equal that quantity in the observed solution. The network benchmark does not fix total allocation.
 
@@ -43,112 +39,100 @@ For distribution-only comparisons, allocation is either explicitly fixed to min(
 
 | Family | Penalty or objective component | Interpretation |
 |---|---|---|
-| Linear | $\lambda\sum_i v_i$ | Constant marginal cost |
-| Weighted linear | $\lambda\sum_i w_i v_i$ | Priority-dependent marginal cost |
-| Quadratic | $\lambda\sum_i v_i^2$ | Increasing marginal cost |
-| Weighted quadratic | $\lambda\sum_i w_i v_i^2$ | Priority and severity |
-| Normalized quadratic | $\lambda\sum_i\frac{v_i^2}{d_i^p}$ | Demand-dependent severity |
-| Fixed | $F\sum_i z_i$ | Charge per affected region |
-| Hybrid | $F\sum_i z_i+\lambda\sum_i v_i^2$ | Concentration versus severity |
-| Absolute minimax | $\lambda t,\quad t\ge v_i$ | Worst absolute shortage |
-| Relative minimax | $\lambda t,\quad d_it\ge v_i$ | Worst percentage shortage |
-| Piecewise linear | $\sum_i p_i$ | Convex linear approximation |
+| Linear | $`\lambda\sum_i v_i`$ | Constant marginal cost |
+| Weighted linear | $`\lambda\sum_i w_i v_i`$ | Priority-dependent marginal cost |
+| Quadratic | $`\lambda\sum_i v_i^2`$ | Increasing marginal cost |
+| Weighted quadratic | $`\lambda\sum_i w_i v_i^2`$ | Priority and severity |
+| Normalized quadratic | $`\lambda\sum_i\frac{v_i^2}{d_i^p}`$ | Demand-dependent severity |
+| Fixed | $`F\sum_i z_i`$ | Charge per affected region |
+| Hybrid | $`F\sum_i z_i+\lambda\sum_i v_i^2`$ | Concentration versus severity |
+| Absolute minimax | $`\lambda t,\quad t\ge v_i`$ | Worst absolute shortage |
+| Relative minimax | $`\lambda t,\quad d_it\ge v_i`$ | Worst percentage shortage |
+| Piecewise linear | $`\sum_i p_i`$ | Convex linear approximation |
 
 For integer shortage, binary activation is exact when
 
-$
+$$
 v_i\le d_i z_i,\qquad v_i\ge z_i,\qquad z_i\in\{0,1\}
-$
+$$
 
 Convex PWL interpolation over adjacent breakpoints $a,b$ can be represented by
 
-$
+$$
 p_i\ge\lambda a^2+\lambda(a+b)(v_i-a)
-$
+$$
 
 The maximum of these affine segments equals the interpolant on its covered domain. Minimizing with positive coefficients on $p_i$ needs no additional segment binaries. The local maximum interpolation error is
 
-$
+$$
 \max_{v\in[a,b]}\bigl(P_{\mathrm{PWL}}(v)-\lambda v^2\bigr)=\frac{\lambda(b-a)^2}{4}
-$
-
-
+$$
 
 ### 2.2 Analytical predictions
 
 For uniform costs and fixed total shortage S, strict convexity of the unweighted quadratic penalty gives equal continuous shortages, subject to bounds. With positive demand and interior continuous solutions, the normalized quadratic first-order condition gives:
 
-
-
-$
+$$
 v_i^*=\frac{S d_i^p}{\sum_j d_j^p}
-$
-
-
+$$
 
 Thus $p=0$ promotes equal absolute shortage, $p=1$ proportional shortage, and $p=2$ favors larger demands bearing disproportionately more shortage. For weighted quadratic with equal costs, $v_i$ is proportional to $1/w_i$. These formulas require appropriate bounds and integer rounding or exact integer optimization.
 
 For the symmetric hybrid model with $k$ affected regions, define
 
-$
+$$
 a=\left\lfloor\frac{S}{k}\right\rfloor,\qquad r=S\bmod k
-$
+$$
 
 The minimum severity penalty and combined penalty are
 
-$
+$$
 \begin{aligned}Q(k)&=\lambda[(k-r)a^2+r(a+1)^2]\\P(k)&=Fk+Q(k)\end{aligned}
-$
+$$
 
 Adjacent ties occur at
 
-$
+$$
 F=Q(k)-Q(k+1)
-$
-
-
+$$
 
 ### 2.3 Service levels and multi-objective trade-offs
 
 A hard minimum regional fill rate $\alpha$ requires
 
-$
+$$
 x_i\ge\lceil\alpha d_i\rceil
-$
+$$
 
 A soft requirement introduces nonnegative integer slack $s_i$:
 
-$
+$$
 x_i+s_i\ge\lceil\alpha d_i\rceil,\qquad s_i\in\mathbb Z_{\ge0}
-$
+$$
 
 The actual SLA shortfall, even when slack is unpenalized, is
 
-$
+$$
 s_i^{\mathrm{actual}}=\max(0,\lceil\alpha d_i\rceil-x_i)
-$
-
-
+$$
 
 The soft-SLA objective is
 
-$
+$$
 \min\quad\sum_i c_i x_i+\lambda\sum_i w_i v_i+\mu\sum_i s_i
-$
+$$
 
 Lexicographic optimization instead orders objectives strictly, using zero objective degradation tolerances:
 
-$
+$$
 \operatorname{lexmin}\left(\sum_i s_i,\ \sum_i w_i v_i,\ \sum_i c_i x_i\right)
-$
+$$
 
 The epsilon-constraint method minimizes weighted shortage subject to an explicit budget, with secondary SLA minimization to avoid dominated ties.
 
-$
+$$
 \begin{aligned}\min\quad &\sum_i w_i v_i\\\text{subject to}\quad &\sum_i s_i\le\epsilon\end{aligned}
-$
-
-
+$$
 
 ## 3. Experimental methodology
 

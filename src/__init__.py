@@ -1,0 +1,1 @@
+"""Penalty formulation research package."""

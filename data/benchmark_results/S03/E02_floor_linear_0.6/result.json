@@ -1,0 +1,59 @@
+{
+  "experiment": "E02_service_floor",
+  "scenario": "S03",
+  "mode": "linear",
+  "service_floor": 0.6,
+  "required_inventory": 600,
+  "available_inventory": 800,
+  "status": "OPTIMAL",
+  "status_code": 2,
+  "runtime_seconds": 0.006706953048706055,
+  "node_count": 0.0,
+  "total_allocation": 800,
+  "total_shortage": 200,
+  "weighted_shortage": 360,
+  "maximum_shortage": 80,
+  "minimum_regional_fill_rate": 0.6,
+  "regional_fill_rate_std": 0.17888543819998318,
+  "allocation_cost": 8000.0,
+  "violation_penalty": 18000.0,
+  "objective": 26000.0,
+  "mip_gap": 0.0,
+  "regions": [
+    {
+      "region": "North",
+      "priority": 5,
+      "demand": 200,
+      "allocation": 200,
+      "shortage": 0
+    },
+    {
+      "region": "South",
+      "priority": 4,
+      "demand": 200,
+      "allocation": 200,
+      "shortage": 0
+    },
+    {
+      "region": "East",
+      "priority": 3,
+      "demand": 200,
+      "allocation": 160,
+      "shortage": 40
+    },
+    {
+      "region": "West",
+      "priority": 2,
+      "demand": 200,
+      "allocation": 120,
+      "shortage": 80
+    },
+    {
+      "region": "Central",
+      "priority": 1,
+      "demand": 200,
+      "allocation": 120,
+      "shortage": 80
+    }
+  ]
+}

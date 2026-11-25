@@ -1,0 +1,47 @@
+{
+  "experiment": "E10",
+  "scenario": "S03",
+  "floor": 0.9,
+  "epsilon": 109,
+  "status": "OPTIMAL",
+  "status_code": 2,
+  "runtime_seconds": 0.002925872802734375,
+  "total_allocation": 800,
+  "total_shortage": 200,
+  "sla_shortfall": 109,
+  "weighted_shortage": 364,
+  "allocation_cost": 8000.0,
+  "oracle_passed": true,
+  "regions": [
+    {
+      "region": "North",
+      "allocation": 189,
+      "shortage": 11,
+      "sla_shortfall": 0
+    },
+    {
+      "region": "South",
+      "allocation": 180,
+      "shortage": 20,
+      "sla_shortfall": 0
+    },
+    {
+      "region": "East",
+      "allocation": 180,
+      "shortage": 20,
+      "sla_shortfall": 0
+    },
+    {
+      "region": "West",
+      "allocation": 180,
+      "shortage": 20,
+      "sla_shortfall": 0
+    },
+    {
+      "region": "Central",
+      "allocation": 71,
+      "shortage": 129,
+      "sla_shortfall": 109
+    }
+  ]
+}

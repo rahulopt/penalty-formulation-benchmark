@@ -1,0 +1,8 @@
+{
+  "experiment": "E00",
+  "scenario": "S01",
+  "status_code": 3,
+  "runtime_seconds": 0.0023810863494873047,
+  "available_inventory": 800,
+  "status": "INFEASIBLE"
+}

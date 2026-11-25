@@ -1,0 +1,13 @@
+{
+  "experiment": "E02_service_floor",
+  "scenario": "S03",
+  "mode": "quadratic",
+  "service_floor": 0.9,
+  "required_inventory": 900,
+  "available_inventory": 800,
+  "status": "INFEASIBLE",
+  "status_code": 3,
+  "runtime_seconds": 0.0030999183654785156,
+  "initial_status_code": 4,
+  "node_count": 0.0
+}

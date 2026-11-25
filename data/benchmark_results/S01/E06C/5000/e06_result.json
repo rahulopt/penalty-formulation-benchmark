@@ -1,0 +1,63 @@
+{
+  "experiment": "E06",
+  "scenario": "S01",
+  "severity": "quadratic",
+  "fixed_coefficient": 5000,
+  "severity_coefficient": 0.625,
+  "status_code": 2,
+  "status": "OPTIMAL",
+  "runtime_seconds": 0.007009029388427734,
+  "node_count": 6.0,
+  "num_variables": 15,
+  "num_constraints": 17,
+  "total_allocation": 800,
+  "total_shortage": 200,
+  "maximum_shortage": 100,
+  "violated_regions": 2,
+  "allocation_cost": 8000.0,
+  "fixed_penalty": 10000,
+  "variable_penalty": 12500.0,
+  "objective": 30500.0,
+  "objective_bound": 30500.0,
+  "mip_gap": 0.0,
+  "fill_rate": 0.8,
+  "minimum_regional_fill_rate": 0.5,
+  "regional_fill_rate_std": 0.2449489742783178,
+  "regions": [
+    {
+      "region": "North",
+      "demand": 200,
+      "allocation": 200,
+      "shortage": 0,
+      "violated": 0
+    },
+    {
+      "region": "South",
+      "demand": 200,
+      "allocation": 200,
+      "shortage": 0,
+      "violated": 0
+    },
+    {
+      "region": "East",
+      "demand": 200,
+      "allocation": 200,
+      "shortage": 0,
+      "violated": 0
+    },
+    {
+      "region": "West",
+      "demand": 200,
+      "allocation": 100,
+      "shortage": 100,
+      "violated": 1
+    },
+    {
+      "region": "Central",
+      "demand": 200,
+      "allocation": 100,
+      "shortage": 100,
+      "violated": 1
+    }
+  ]
+}

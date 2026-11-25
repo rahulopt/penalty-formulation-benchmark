@@ -1,0 +1,51 @@
+{
+  "experiment": "E03",
+  "scenario": "S01",
+  "status_code": 2,
+  "status": "OPTIMAL",
+  "runtime_seconds": 0.010168075561523438,
+  "node_count": 1.0,
+  "penalty_coefficient": 0.625,
+  "total_allocation": 800,
+  "total_shortage": 200,
+  "maximum_shortage": 40,
+  "allocation_cost": 8000.0,
+  "violation_penalty": 5000.0,
+  "objective": 13000.0,
+  "objective_bound": 13000.0,
+  "mip_gap": 0.0,
+  "fill_rate": 0.8,
+  "regional_fill_rate_std": 0.0,
+  "regions": [
+    {
+      "region": "North",
+      "demand": 200,
+      "allocation": 160,
+      "shortage": 40
+    },
+    {
+      "region": "South",
+      "demand": 200,
+      "allocation": 160,
+      "shortage": 40
+    },
+    {
+      "region": "East",
+      "demand": 200,
+      "allocation": 160,
+      "shortage": 40
+    },
+    {
+      "region": "West",
+      "demand": 200,
+      "allocation": 160,
+      "shortage": 40
+    },
+    {
+      "region": "Central",
+      "demand": 200,
+      "allocation": 160,
+      "shortage": 40
+    }
+  ]
+}
